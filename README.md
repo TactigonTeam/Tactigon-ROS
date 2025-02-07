@@ -55,7 +55,7 @@ source ros_venv/bin/activate
 
 ### 2️⃣ Install Tactigon-Gear
 ```bash
-pip install tactigon_gear-5.4.0.tar.gz
+pip install tactigon_gear==5.4.1
 ```
 
 ### 3️⃣ Deactivate Virtual Environment
