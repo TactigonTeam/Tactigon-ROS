@@ -1,0 +1,172 @@
+# Tactigon ROS2 Nodes Installation and Usage Guide
+
+![ROS2 Logo](https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Ros_logo.svg/1920px-Ros_logo.svg.png)
+
+Welcome to the **Tactigon ROS2 Nodes** guide! This document will help you install and use the Tactigon-based ROS2 packages.
+
+---
+
+## 🚀 Prerequisites
+
+### 1️⃣ Install Ubuntu 24.04 LTS
+Download and install Ubuntu 24.04 LTS from the [official website](https://ubuntu.com/download/desktop).
+
+### 2️⃣ Install ROS2 Jazzy
+Follow the official [ROS2 Jazzy Installation Guide](https://docs.ros.org/en/jazzy/Installation/Ubuntu-Install-Debians.html) to install ROS2 and its developer tools.
+
+---
+
+## 📁 Setting Up the ROS2 Workspace
+
+### 1️⃣ Download and Extract Files
+Download the compressed file containing the following folders:
+```
+examples/
+tactigon_gear-5.4.0.tar.gz
+src/
+```
+Extract the file into a directory named `ros2_ws`:
+```bash
+mkdir -p ~/ros2_ws
+cd ~/ros2_ws
+# Extract your compressed file here
+```
+
+Your workspace structure should look like this:
+```
+ros2_ws/
+├── examples/
+├── tactigon_gear-5.4.0.tar.gz
+└── src/
+    ├── tactigon_msgs/          # Custom message definitions
+    └── tactigon_ros/           # Python package with nodes
+```
+
+---
+
+## 🔧 Installing Tactigon-Gear Library
+
+### 1️⃣ Create a Virtual Environment
+```bash
+cd ~/ros2_ws
+python3 -m venv ros_venv
+source ros_venv/bin/activate
+```
+
+### 2️⃣ Install Tactigon-Gear
+```bash
+pip install tactigon_gear-5.4.0.tar.gz
+```
+
+### 3️⃣ Deactivate Virtual Environment
+```bash
+deactivate
+```
+
+---
+
+## 🔨 Building the ROS2 Workspace
+
+### 1️⃣ Install Dependencies
+```bash
+cd ~/ros2_ws
+rosdep install --from-paths src --ignore-src -y --skip-keys tactigon-gear
+```
+
+### 2️⃣ Build the Workspace
+```bash
+colcon build
+```
+
+### 3️⃣ Source the Workspace
+```bash
+source install/setup.bash
+```
+
+### 4️⃣ Add Virtual Environment to `PYTHONPATH`
+```bash
+export PYTHONPATH=$PYTHONPATH:~/ros2_ws/ros_venv/lib/python3.12/site-packages
+```
+
+---
+
+## 📦 The `tactigon_msgs` Package
+
+This package contains custom message definitions for the Tactigon device.
+
+### Message Definitions
+📌 Located in `tactigon_msgs/msg/`
+- **TSkinState.msg** - Full state of the Tactigon device
+- **Touch.msg** - Touchpad data
+- **Angle.msg** - IMU (orientation) data
+- **Gesture.msg** - Gesture detection data
+
+### Example: `TSkinState.msg`
+```yaml
+builtin_interfaces/Time timestamp
+bool connected
+uint8 battery
+uint8 selector
+bool selector_valid
+float32 touchpad_x_pos
+float32 touchpad_y_pos
+float32 angle_roll
+float32 angle_pitch
+float32 angle_yaw
+string gesture_gesture
+float32 gesture_probability
+```
+
+---
+
+## ▶ Running the Nodes
+
+### 1️⃣ Start the `tactigon_ros` Nodes
+#### `tactigon_data` - Publishes Tactigon data
+```bash
+ros2 run tactigon_ros tactigon_data
+```
+#### `tactigon_logger` - Logs sensor data
+```bash
+ros2 run tactigon_ros tactigon_logger
+```
+#### `tactigon_turtlesim_controller` - Controls Turtlesim via gestures
+```bash
+ros2 run turtlesim turtlesim_node
+ros2 run tactigon_ros tactigon_turtlesim_controller
+```
+
+### 2️⃣ Check Topics
+Verify the nodes are publishing correctly:
+```bash
+ros2 topic list
+```
+Expected output:
+```
+/tactigon/state
+/tactigon/log
+/turtle1/cmd_vel
+```
+
+---
+
+## ❓ Troubleshooting
+
+❌ **Python Virtual Environment Not Found**
+➡ Ensure `PYTHONPATH` is correctly set.
+
+❌ **Workspace Not Sourced**
+➡ Run:
+```bash
+source ~/ros2_ws/install/setup.bash
+```
+
+❌ **Package Not Found**
+➡ Ensure you ran `colcon build` and sourced it correctly.
+
+---
+
+
+📧 **Questions?** Contact me at stage_robotica@nextind.eu .
+
+🎯 Happy ROS2 Development! 🚀

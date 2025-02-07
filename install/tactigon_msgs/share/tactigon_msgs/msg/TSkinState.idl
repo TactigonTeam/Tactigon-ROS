@@ -1,0 +1,38 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from tactigon_msgs/msg/TSkinState.msg
+// generated code does not contain a copyright notice
+
+#include "tactigon_msgs/msg/Angle.idl"
+#include "tactigon_msgs/msg/Gesture.idl"
+#include "tactigon_msgs/msg/Touch.idl"
+
+module tactigon_msgs {
+  module msg {
+    module TSkinState_Constants {
+      const uint8 BLE_SELECTOR_NONE = 0;
+      const uint8 BLE_SELECTOR_SENSORS = 1;
+      const uint8 BLE_SELECTOR_AUDIO = 2;
+    };
+    struct TSkinState {
+      boolean connected;
+
+      float battery;
+
+      uint8 selector;
+
+      boolean selector_valid;
+
+      tactigon_msgs::msg::Touch touchpad;
+
+      boolean touchpad_valid;
+
+      tactigon_msgs::msg::Angle angle;
+
+      boolean angle_valid;
+
+      tactigon_msgs::msg::Gesture gesture;
+
+      boolean gesture_valid;
+    };
+  };
+};
