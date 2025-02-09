@@ -21,8 +21,7 @@ Follow the official [ROS2 Jazzy Installation Guide](https://docs.ros.org/en/jazz
 ### 1️⃣ Download and Extract Files
 Download the compressed file containing the following folders:
 ```
-examples/
-tactigon_gear-5.4.0.tar.gz
+models/
 src/
 ```
 Extract the file into a directory named `ros2_ws`:
@@ -35,8 +34,7 @@ cd ~/ros2_ws
 Your workspace structure should look like this:
 ```
 ros2_ws/
-├── examples/
-├── tactigon_gear-5.4.0.tar.gz
+├── models/
 └── src/
     ├── tactigon_msgs/          # Custom message definitions
     └── tactigon_ros/           # Python package with nodes
@@ -46,21 +44,11 @@ ros2_ws/
 
 ## 🔧 Installing Tactigon-Gear Library
 
-### 1️⃣ Create a Virtual Environment
-```bash
-cd ~/ros2_ws
-python3 -m venv ros_venv
-source ros_venv/bin/activate
-```
 
-### 2️⃣ Install Tactigon-Gear
-```bash
-pip install tactigon_gear==5.4.1
-```
 
-### 3️⃣ Deactivate Virtual Environment
+### 1️⃣ Install Tactigon-Gear
 ```bash
-deactivate
+pip install --break-system-packages tactigon_gear 
 ```
 
 ---
@@ -82,12 +70,6 @@ colcon build
 ```bash
 source install/setup.bash
 ```
-
-### 4️⃣ Add Virtual Environment to `PYTHONPATH`
-```bash
-export PYTHONPATH=$PYTHONPATH:~/ros2_ws/ros_venv/lib/python3.12/site-packages
-```
-
 ---
 
 ## 📦 The `tactigon_msgs` Package
@@ -133,6 +115,8 @@ ros2 run tactigon_ros tactigon_logger
 #### `tactigon_turtlesim_controller` - Controls Turtlesim via gestures
 ```bash
 ros2 run turtlesim turtlesim_node
+```
+```bash
 ros2 run tactigon_ros tactigon_turtlesim_controller
 ```
 
