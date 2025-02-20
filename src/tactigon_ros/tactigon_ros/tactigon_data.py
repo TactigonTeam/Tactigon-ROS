@@ -21,8 +21,8 @@ class TactigonDataPublisher(Node):
         TSKIN_NAME = "TSKIN"
 
         gesture_config = GestureConfig(
-            path.join(model_folder, "examples", "gear", "model.pickle"),
-            path.join(model_folder, "examples", "gear", "encoder.pickle"),
+            path.join(model_folder, "models", "demo", "model.pickle"),
+            path.join(model_folder, "models", "demo", "encoder.pickle"),
             #path.join(model_folder, "examples", "gear", "modelpy12.pickle"),
             #path.join(model_folder, "examples", "gear", "encoderpy12.pickle"),
             "demo",
