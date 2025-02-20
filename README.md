@@ -47,6 +47,7 @@ ros2_ws/
 ### 1️⃣ Install Dependencies
 ```bash
 cd ~/ros2_ws
+export PIP_BREAK_SYSTEM_PACKAGES=1
 rosdep install --from-paths src --ignore-src -y 
 ```
 
