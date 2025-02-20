@@ -42,23 +42,12 @@ ros2_ws/
 
 ---
 
-## 🔧 Installing Tactigon-Gear Library
-
-
-
-### 1️⃣ Install Tactigon-Gear
-```bash
-pip install --break-system-packages tactigon_gear 
-```
-
----
-
 ## 🔨 Building the ROS2 Workspace
 
 ### 1️⃣ Install Dependencies
 ```bash
 cd ~/ros2_ws
-rosdep install --from-paths src --ignore-src -y --skip-keys tactigon-gear
+rosdep install --from-paths src --ignore-src -y 
 ```
 
 ### 2️⃣ Build the Workspace

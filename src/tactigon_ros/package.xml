@@ -12,7 +12,7 @@
 <depend>rclpy</depend>
 <depend>example_interfaces</depend>
 <depend>std_msgs</depend>
-<depend>tactigon_gear</depend>
+<depend>python3-tactigon-gear-pip</depend>
 <depend>sensor_msgs</depend>
 <depend>geometry_msgs</depend>
 
