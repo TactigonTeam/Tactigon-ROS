@@ -1,6 +1,8 @@
 # Tactigon ROS2 Nodes Installation and Usage Guide
 
 ![ROS2 Logo](https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Ros_logo.svg/1920px-Ros_logo.svg.png)
+![Tactigon Logo](https://pypi-camo.freetls.fastly.net/90dce08d567e5182bf672f417aded1b75e57b728/68747470733a2f2f617661746172732e67697468756275736572636f6e74656e742e636f6d2f752f36333032303238353f733d32303026763d34)
+
 
 Welcome to the **Tactigon ROS2 Nodes** guide! This document will help you install and use the Tactigon-based ROS2 packages.
 
@@ -48,6 +50,7 @@ ros2_ws/
 ```bash
 cd ~/ros2_ws
 export PIP_BREAK_SYSTEM_PACKAGES=1
+rosdep update
 rosdep install --from-paths src --ignore-src -y 
 ```
 
