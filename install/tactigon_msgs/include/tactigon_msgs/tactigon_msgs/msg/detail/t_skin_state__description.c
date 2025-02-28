@@ -23,8 +23,8 @@ tactigon_msgs__msg__TSkinState__get_type_hash(
 #include <string.h>
 
 // Include directives for referenced types
-#include "tactigon_msgs/msg/detail/angle__functions.h"
 #include "tactigon_msgs/msg/detail/touch__functions.h"
+#include "tactigon_msgs/msg/detail/angle__functions.h"
 #include "tactigon_msgs/msg/detail/gesture__functions.h"
 
 // Hashes for external referenced types

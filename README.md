@@ -1,6 +1,8 @@
 # Tactigon ROS2 Nodes Installation and Usage Guide
 
 ![ROS2 Logo](https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Ros_logo.svg/1920px-Ros_logo.svg.png)
+![Tactigon Logo](https://pypi-camo.freetls.fastly.net/90dce08d567e5182bf672f417aded1b75e57b728/68747470733a2f2f617661746172732e67697468756275736572636f6e74656e742e636f6d2f752f36333032303238353f733d32303026763d34)
+
 
 Welcome to the **Tactigon ROS2 Nodes** guide! This document will help you install and use the Tactigon-based ROS2 packages.
 
@@ -21,8 +23,7 @@ Follow the official [ROS2 Jazzy Installation Guide](https://docs.ros.org/en/jazz
 ### 1️⃣ Download and Extract Files
 Download the compressed file containing the following folders:
 ```
-examples/
-tactigon_gear-5.4.0.tar.gz
+models/
 src/
 ```
 Extract the file into a directory named `ros2_ws`:
@@ -35,32 +36,10 @@ cd ~/ros2_ws
 Your workspace structure should look like this:
 ```
 ros2_ws/
-├── examples/
-├── tactigon_gear-5.4.0.tar.gz
+├── models/
 └── src/
     ├── tactigon_msgs/          # Custom message definitions
     └── tactigon_ros/           # Python package with nodes
-```
-
----
-
-## 🔧 Installing Tactigon-Gear Library
-
-### 1️⃣ Create a Virtual Environment
-```bash
-cd ~/ros2_ws
-python3 -m venv ros_venv
-source ros_venv/bin/activate
-```
-
-### 2️⃣ Install Tactigon-Gear
-```bash
-pip install tactigon_gear-5.4.0.tar.gz
-```
-
-### 3️⃣ Deactivate Virtual Environment
-```bash
-deactivate
 ```
 
 ---
@@ -70,7 +49,9 @@ deactivate
 ### 1️⃣ Install Dependencies
 ```bash
 cd ~/ros2_ws
-rosdep install --from-paths src --ignore-src -y --skip-keys tactigon-gear
+export PIP_BREAK_SYSTEM_PACKAGES=1
+rosdep update
+rosdep install --from-paths src --ignore-src -y 
 ```
 
 ### 2️⃣ Build the Workspace
@@ -82,12 +63,6 @@ colcon build
 ```bash
 source install/setup.bash
 ```
-
-### 4️⃣ Add Virtual Environment to `PYTHONPATH`
-```bash
-export PYTHONPATH=$PYTHONPATH:~/ros2_ws/ros_venv/lib/python3.12/site-packages
-```
-
 ---
 
 ## 📦 The `tactigon_msgs` Package
@@ -133,6 +108,8 @@ ros2 run tactigon_ros tactigon_logger
 #### `tactigon_turtlesim_controller` - Controls Turtlesim via gestures
 ```bash
 ros2 run turtlesim turtlesim_node
+```
+```bash
 ros2 run tactigon_ros tactigon_turtlesim_controller
 ```
 
