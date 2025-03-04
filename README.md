@@ -15,6 +15,10 @@ Download and install Ubuntu 24.04 LTS from the [official website](https://ubuntu
 
 ### 2️⃣ Install ROS2 Jazzy
 Follow the official [ROS2 Jazzy Installation Guide](https://docs.ros.org/en/jazzy/Installation/Ubuntu-Install-Debians.html) to install ROS2 and its developer tools.
+It is also suggested to run the following command after the installation in order to avoid having to source ros2 on each new terminal
+```bash
+echo "source /opt/ros/jazzy/setup.bash" >> ~/.bashrc
+```
 
 ---
 
@@ -50,6 +54,8 @@ ros2_ws/
 ```bash
 cd ~/ros2_ws
 export PIP_BREAK_SYSTEM_PACKAGES=1
+sudo apt install python3-pip 
+sudo rosdep init
 rosdep update
 rosdep install --from-paths src --ignore-src -y 
 ```
@@ -97,15 +103,20 @@ float32 gesture_probability
 ## ▶ Running the Nodes
 
 ### 1️⃣ Start the `tactigon_ros` Nodes
-#### `tactigon_data` - Publishes Tactigon data
+#### `tactigon_data` - Publishes Tactigon data 
+This node handles the connection with the Tactigon Skin and publishes a message with the current state on the "/tactigon_state" topic.
+
+Before running this node it is neccesary to modify `TSKIN_MAC = "C0:83:35:34:28:38"` with your own Tactigon Skin MAC address. 
 ```bash
 ros2 run tactigon_ros tactigon_data
 ```
 #### `tactigon_logger` - Logs sensor data
+This node outputs a CSV file with the logged data of the tactigon. Has to be runned in parallel to the tactigon_data node.
 ```bash
 ros2 run tactigon_ros tactigon_logger
 ```
 #### `tactigon_turtlesim_controller` - Controls Turtlesim via gestures
+This node is a simple demo. The node maps certain Tactigon gestures to the control inputs of the turtlebot 2D simulation. Note: run this two nodes in different terminals in parallel. 
 ```bash
 ros2 run turtlesim turtlesim_node
 ```
@@ -114,14 +125,13 @@ ros2 run tactigon_ros tactigon_turtlesim_controller
 ```
 
 ### 2️⃣ Check Topics
-Verify the nodes are publishing correctly:
+At any point you it is possible to verify if the nodes are publishing correctly:
 ```bash
 ros2 topic list
 ```
 Expected output:
 ```
-/tactigon/state
-/tactigon/log
+/tactigon_state
 /turtle1/cmd_vel
 ```
 
