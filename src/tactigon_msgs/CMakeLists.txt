@@ -18,7 +18,7 @@ rosidl_generate_interfaces(${PROJECT_NAME}
   "msg/Touch.msg"
   "msg/Angle.msg"
   "msg/Gesture.msg"
-  "msg/TSkinState.msg"
+  "msg/State.msg"
   DEPENDENCIES std_msgs
 )
 
